@@ -16,18 +16,21 @@ On top of all that, every even numbered attempt secretly converted the answer to
 
 ## 2. How did you use AI as a teammate?
 
-- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
-- Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
-- Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+I used VS Code Copilot with Opus 4.6 in Agent mode throughout this project to help identify bugs, refactor code, and write tests. It worked like a pair programming partner where I described what I was seeing and it helped trace the problems back to specific lines.
+
+One correct suggestion from the AI was that the hint messages in check_guess were reversed. It pointed out that when guess > secret the code returned "Go HIGHER!" instead of "Go LOWER!" and that swapping the two message strings would fix the problem. I verified this by running pytest with a test that checks whether guessing 75 against a secret of 50 returns a message containing "LOWER," and the test passed after the fix.
+
+One suggestion that was initially misleading was how the AI handled the buggy try/except TypeError block in the original check_guess function. When it refactored the code into logic_utils.py it removed that entire block without explaining why. The original code had a fallback that converted the guess to a string and compared it to the secret as a string, which was there to handle the even attempt type mismatch bug. I had to review the diff carefully to make sure removing it did not break anything, and I confirmed through testing that the simplified version still handles all normal integer comparisons correctly.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
-- How did you decide whether a bug was really fixed?
-- Describe at least one test you ran (manual or using pytest)  
-  and what it showed you about your code.
-- Did AI help you design or understand any tests? How?
+I decided a bug was really fixed by writing targeted pytest cases and then running the full test suite to make sure nothing else broke. If the tests passed and the behavior matched what I expected, I considered the fix confirmed. I also used the Developer Debug Info expander in the live app to watch the secret number and compare it against the hints while playing.
+
+One specific test I ran was test_too_high_hint_says_go_lower in test_game_logic.py. It calls check_guess(75, 50) and asserts that the outcome is "Too High" and the message contains the word "LOWER." Before the fix this would have failed because the original message said "Go HIGHER!" instead. After the fix all six tests passed, which told me both the hint logic and the difficulty range were working correctly.
+
+The AI helped me design the tests by generating the initial pytest structure and suggesting that I check the message content, not just the outcome string. That was a good call because the outcome could be "Too High" while the player facing message still said the wrong thing. Checking for "LOWER" inside the message string caught exactly the kind of mismatch that the original bug created.
 
 ---
 
