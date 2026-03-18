@@ -23,6 +23,9 @@ It wrote the code, ran away, and now the game is unplayable.
    - Run `pytest` in your terminal.
    - Keep fixing until all tests pass!
 
+
+use for pytest - `python -m pytest tests/test_game_logic.py`
+
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
@@ -32,7 +35,7 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📸 Demo
 
 - [ ] [Insert a screenshot of your fixed, winning game here]
-
+![alt text](image.png)
 ## 🚀 Stretch Features
 
 - [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
