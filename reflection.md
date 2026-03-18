@@ -36,15 +36,18 @@ The AI helped me design the tests by generating the initial pytest structure and
 
 ## 4. What did you learn about Streamlit and state?
 
-- In your own words, explain why the secret number kept changing in the original app.
-- How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
-- What change did you make that finally gave the game a stable secret number?
+The secret number could change between guesses because Streamlit reruns the entire script from top to bottom every time the user interacts with the page. If the secret was generated with random.randint outside of session state, it would get a brand new value on every single rerun. That is why the game felt impossible, the target was silently moving.
+
+The way I would explain it to a friend is that Streamlit is like a whiteboard that gets erased and redrawn every time you click a button. Session state is a sticky note on the side of the whiteboard where you write down things you want to remember between redraws. Anything not saved to that sticky note disappears after each click.
+
+The fix that stabilized the secret number was wrapping it in a session state check. The code only generates a new random number if "secret" does not already exist in st.session_state, so once the game starts the number stays the same until the player clicks New Game.
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
-- What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
-- What is one thing you would do differently next time you work with AI on a coding task?
-- In one or two sentences, describe how this project changed the way you think about AI generated code.
+One habit I want to carry forward is writing a small pytest case for every bug I fix before I move on. It only takes a minute and it gives me real proof the fix works instead of just hoping it does. It also makes it easy to catch regressions later if I change something else in the same area.
+
+Next time I work with AI on a coding task I would review every diff more carefully before accepting it. In this project the AI quietly removed a whole code block during refactoring and I almost missed it. Going forward I plan to read each changed file line by line instead of just checking whether the tests pass.
+
+This project showed me that AI generated code can look clean and confident while still containing real bugs. It taught me to treat AI output the same way I would treat code from any other teammate, meaning I should always read it, test it, and question it before trusting it.
