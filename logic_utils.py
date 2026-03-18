@@ -5,6 +5,7 @@ def get_range_for_difficulty(difficulty: str):
     if difficulty == "Normal":
         return 1, 100
     if difficulty == "Hard":
+        # FIX: Changed range from (1, 50) to (1, 200) using VS Code Copilot (Opus 4.6) Agent mode so Hard is actually harder than Normal
         return 1, 200
     return 1, 100
 
@@ -41,6 +42,7 @@ def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
 
+    # FIX: Swapped hint messages using VS Code Copilot (Opus 4.6) Agent mode — originally "Too High" said "Go HIGHER!" which was backwards
     if guess > secret:
         return "Too High", "📉 Go LOWER!"
     else:
