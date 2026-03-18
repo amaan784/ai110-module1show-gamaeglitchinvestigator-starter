@@ -36,6 +36,8 @@ use for pytest - `python -m pytest tests/test_game_logic.py`
 
 - [ ] [Insert a screenshot of your fixed, winning game here]
 ![alt text](image.png)
+![alt text](image-1.png)
+
 ## 🚀 Stretch Features
 
 - [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
