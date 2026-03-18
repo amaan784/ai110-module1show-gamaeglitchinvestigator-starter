@@ -28,9 +28,12 @@ use for pytest - `python -m pytest tests/test_game_logic.py`
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+  The game is a number guessing app built with Streamlit where the player tries to guess a randomly chosen secret number within a limited number of attempts, receiving higher or lower hints after each guess.
+- [x] Detail which bugs you found.
+  The hint messages were reversed (saying "Go HIGHER" when the guess was too high). Hard mode used a range of 1 to 50 which was easier than Normal mode's 1 to 100. The info banner was hardcoded to say "between 1 and 100" regardless of difficulty. Every even numbered attempt converted the secret to a string causing a TypeError crash. The New Game button did not reset status, score, or history so the game stayed stuck after winning or losing.
+- [x] Explain what fixes you applied.
+  Swapped the hint messages in check_guess so "Too High" says "Go LOWER" and vice versa. Changed Hard mode range to 1 to 200. Removed the buggy even attempt string conversion so the secret is always passed as an integer. Fixed the New Game button to fully reset all session state including status, score, history, and attempts. Refactored all game logic from app.py into logic_utils.py.
 
 ## 📸 Demo
 
