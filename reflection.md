@@ -4,9 +4,13 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 ## 1. What was broken when you started?
 
-- What did the game look like the first time you ran it?
-- List at least two concrete bugs you noticed at the start  
-  (for example: "the secret number kept changing" or "the hints were backwards").
+When I first ran the game it looked like a normal number guessing app, but things started falling apart as soon as I made a few guesses. The hints were completely backwards. If my guess was too high, the game told me to "Go HIGHER!" and if my guess was too low it told me to "Go LOWER!" This sent me in the wrong direction every single time and made it impossible to find the secret number by following the feedback.
+
+The second thing I noticed was that Hard mode was actually easier than Normal mode. Normal mode gives you a range of 1 to 100, but Hard mode only uses 1 to 50. That means you have fewer numbers to guess from on Hard, which makes it simpler, not harder. The difficulty labels did not match the actual challenge at all.
+
+The third bug was that the info message at the top always said "Guess a number between 1 and 100" no matter which difficulty I picked. Even on Easy mode where the real range is 1 to 20, the message still showed 1 to 100. This was confusing because the displayed range did not match the actual range being used behind the scenes.
+
+On top of all that, every even numbered attempt secretly converted the answer to a string before comparing it to my guess. This caused the comparison logic to behave unpredictably because comparing an integer to a string does not work the way you would expect. So sometimes the hints were wrong not just because they were flipped, but because the data types did not even match up correctly.
 
 ---
 
